@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Videojuegos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <span class="logo">🎮</span>
+      <div>
+        <h1>GameVault CRUD</h1>
+        <p class="subtitle">Gestión de videojuegos</p>
+      </div>
+      <span class="badge" id="badge-total">0 juegos</span>
+    </header>
+
+    <main class="main">
+      <div class="stats" id="stats-grid"></div>
+
+      <div class="toolbar">
+        <input id="search-input" class="search-box" placeholder="🔍 Buscar por título, género, desarrollador..." />
+        <select id="filter-genre" class="filter-select">
+          <option value="">Todos los géneros</option>
+          <option>Acción</option><option>RPG</option><option>Aventura</option>
+          <option>Deportes</option><option>Estrategia</option><option>Simulación</option>
+          <option>Terror</option><option>Otros</option>
+        </select>
+        <button id="btn-nuevo" class="btn primary">+ Nuevo juego</button>
+      </div>
+
+      <div class="table-wrap">
+        <table id="games-table">
+          <thead>
+            <tr>
+              <th>Título</th><th>Género</th><th>Plataforma</th>
+              <th>Año</th><th>Desarrollador</th><th>Rating</th><th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="games-tbody"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Modal Formulario -->
+    <div id="modal-form" class="modal-overlay hidden">
+      <div class="modal">
+        <h2 id="modal-title">🎮 Registrar videojuego</h2>
+        <input type="hidden" id="form-id" />
+        <div class="form-group">
+          <label>Título *</label>
+          <input type="text" id="form-titulo" placeholder="Nombre del juego" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Género</label>
+            <select id="form-genero">
+              <option>Acción</option><option>RPG</option><option>Aventura</option>
+              <option>Deportes</option><option>Estrategia</option><option>Simulación</option>
+              <option>Terror</option><option>Otros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Plataforma</label>
+            <select id="form-plataforma">
+              <option>PC</option><option>PlayStation 5</option><option>PlayStation 4</option>
+              <option>Xbox Series</option><option>Nintendo Switch</option>
+              <option>Multi</option><option>Móvil</option><option>Otros</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Desarrollador *</label>
+            <input type="text" id="form-desarrollador" placeholder="Ej: Nintendo" />
+          </div>
+          <div class="form-group">
+            <label>Año</label>
+            <input type="number" id="form-anio" min="1970" max="2030" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Calificación: <span id="rating-display">8</span>/10 <span id="rating-stars" class="rating-stars"></span></label>
+          <input type="range" id="form-calificacion" min="1" max="10" value="8" />
+        </div>
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea id="form-descripcion" placeholder="Breve descripción del juego..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button id="btn-cancel" class="btn">Cancelar</button>
+          <button id="btn-save" class="btn primary">Registrar juego</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Confirmar Eliminar -->
+    <div id="modal-confirm" class="modal-overlay hidden">
+      <div class="confirm-modal">
+        <div class="icon">⚠️</div>
+        <h3>¿Eliminar videojuego?</h3>
+        <p id="confirm-msg">Esta acción no se puede deshacer.</p>
+        <div class="confirm-actions">
+          <button id="btn-cancel-del" class="btn">Cancelar</button>
+          <button id="btn-confirm-del" class="btn danger">Sí, eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
